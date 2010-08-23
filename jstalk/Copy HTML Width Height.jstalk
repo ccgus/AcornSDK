@@ -1,0 +1,12 @@
+function main(image) {
+	var extent = [image extent];
+	
+	var pb = NSPasteboard.generalPasteboard();
+	pb.declareTypes_owner_([NSStringPboardType], null);
+	
+	var s = 'width="' + extent.size.width + '" height="' + extent.size.height + '"';
+    pb.setString_forType_(s, NSStringPboardType)
+	
+	// since we're not changing the image, we return nothing
+	return null;
+}

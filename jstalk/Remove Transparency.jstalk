@@ -1,0 +1,12 @@
+
+function main(image) {
+    var toolPalette = [[NSApplication sharedApplication] toolPalette];
+    var back = [CIFilter filterWithName:"CIConstantColorGenerator"];
+    [back setValue:[[[CIColor alloc] initWithColor:[toolPalette frontColor]] autorelease] forKey:"inputColor"];
+    
+    var sourceOver = [CIFilter filterWithName:"CISourceOverCompositing"];
+    [sourceOver setValue:image forKey:"inputImage"];
+    [sourceOver setValue:[back valueForKey:"outputImage"] forKey:"inputBackgroundImage"];
+    
+    return [sourceOver valueForKey:"outputImage"];
+}

@@ -1,0 +1,11 @@
+
+function main(image) {
+    
+    var doc = [[[NSApplication sharedApplication] orderedDocuments] objectAtIndex:0];
+    var image = [[[NSImage alloc] initWithData:[doc dataRepresentationOfType:"public.png"]] autorelease];
+    
+    var cursor = [[NSCursor alloc] initWithImage:image hotSpot:NSMakePoint(0, 0)];
+    
+    [cursor push];
+    
+}

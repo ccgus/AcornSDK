@@ -1,0 +1,65 @@
+
+function main(image) {
+    
+    var doc = [[[NSApplication sharedApplication] orderedDocuments] objectAtIndex:0];
+    var image = [[[NSImage alloc] initWithData:[doc dataRepresentationOfType:"public.png"]] autorelease];
+    
+    var bitmap = [image bestRepresentationForDevice:nil];
+    
+    var extent = NSMakeRect(0, 0, [bitmap pixelsWide], [bitmap pixelsHigh]);
+    
+    var xOffset = 5;
+    var yOffset = 35;
+    var curveHeight = 15;
+    var imageYOffset = 10;
+    
+    var newSize = NSMakeSize(extent.size.width,
+                             extent.size.height + imageYOffset);
+    
+    var newImage = [[[NSImage alloc] initWithSize:newSize] autorelease];
+    
+    [newImage lockFocus];
+    
+    [[NSGraphicsContext currentContext] saveGraphicsState];
+    
+    var shadow = [[NSShadow alloc] init];
+    [shadow setShadowColor:[[NSColor blackColor] colorWithAlphaComponent:.6]];
+    
+    var shadowOffset = NSMakeSize(0, -(yOffset + 5));
+    [shadow setShadowOffset:shadowOffset];
+    [shadow setShadowBlurRadius:5];
+    shadow.set()
+    
+    // make a curved path, at the bottom of our image.
+    bezierPath = NSBezierPath.bezierPath();
+    
+    [bezierPath moveToPoint:NSMakePoint(xOffset, 40 + yOffset)];
+    [bezierPath lineToPoint:NSMakePoint(extent.size.width - (xOffset), 40 + yOffset)];
+    [bezierPath lineToPoint:NSMakePoint(extent.size.width - (xOffset), 10 + yOffset)];
+    
+    [bezierPath curveToPoint:NSMakePoint(newSize.width / 2, curveHeight + yOffset)
+               controlPoint1:NSMakePoint(extent.size.width - (xOffset), 10 + yOffset)
+               controlPoint2:NSMakePoint(newSize.width *.75, curveHeight + yOffset)];
+    
+    [bezierPath curveToPoint:NSMakePoint(xOffset, 10 + yOffset)
+               controlPoint1:NSMakePoint(newSize.width *.25, curveHeight + yOffset)
+               controlPoint2:NSMakePoint(xOffset, 10 + yOffset)];
+    
+    [bezierPath fill];
+    
+    // get rid of our shadow
+    [[NSGraphicsContext currentContext] restoreGraphicsState];
+    
+    // NSImage takes into account dpi of the image.  So we force it's size, to avoid small images.
+    [image setSize: extent.size];
+    
+    // draw our image
+    [image drawAtPoint:NSMakePoint(0, imageYOffset)
+              fromRect:NSMakeRect(0, 0, extent.size.width, extent.size.height)
+             operation:NSCompositeCopy
+              fraction:1];
+    
+    [newImage unlockFocus];
+    
+    NSDocumentController.sharedDocumentController().newDocumentWithImageData_(newImage.TIFFRepresentation());
+}
