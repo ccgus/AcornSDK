@@ -1,8 +1,10 @@
-This is a collection of various Acorn plugins.  Acorn is a great image editor from Flying Meat, and you can grab it from here: http://flyingmeat.com/acorn/
+This is a collection of various [Acorn](http://flyingmeat.com/acorn/) plugins.
+------------------------------------------------------------------------------
 
-You can read up on how to write Acorn plugins from here:
-http://flyingmeat.com/acorn/docs-2.0/writing%20plugins.html
+Acorn is a great image editor for the Mac from Flying Meat, and you can grab it from here: [http://flyingmeat.com/acorn/](http://flyingmeat.com/acorn/)
 
-Any plugins that end with .jstalk are written in the JTalk/JavaScript language:
-http://jstalk.org/
+[Official documentation](http://flyingmeat.com/acorn/docs-2.0/writing%20plugins.html) on writing plugins is also available.
+
+Any plugins that end with .jstalk are written in the [JTalk/JavaScript](http://jstalk.org/) language.
+
 
