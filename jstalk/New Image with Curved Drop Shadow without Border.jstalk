@@ -1,3 +1,6 @@
+/*
+This is a plugin to take the front image, and make a new image out of it with a curved drop shadow.  No need to install it, as it comes with Acorn already.
+*/
 
 function main(image) {
     

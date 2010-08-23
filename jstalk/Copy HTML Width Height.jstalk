@@ -1,3 +1,9 @@
+/*
+This is a plugin that will take the current dimensions of the selected layer, and copy width + height attributes to your clipboard.  Useful for pasting into HTML img tags.
+
+To install, put this file in you ~/Library/Application Support/Acorn/Plug-Ins/. folder, and restart Acorn.
+*/
+
 function main(image) {
 	var extent = [image extent];
 	
