@@ -1,0 +1,10 @@
+<?xml version='1.0'?>
+<!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
+<signatures version='0.9'>
+
+  <class name='ACPluginManager'>
+    <method selector='addPluginsMenuTitle:withSuperMenuTitle:target:action:keyEquivalent:keyEquivalentModifierMask:userObject:'>
+      <retval type='B'/>
+    </method>
+  </class>
+</signatures>
