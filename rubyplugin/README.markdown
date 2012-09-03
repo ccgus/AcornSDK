@@ -1,7 +1,11 @@
 # Acorn Plugin Enabler for Ruby/RubyCocoa
 
-Acorn - http://flyingmeat.com/acorn/
-
+While writing plugins in Ruby seems like an awesome idea, the plugin to enable
+this all to work uses RubyCocoa, which has apparently been superseded and this
+is probably a good thing, since it did unholy things to the Objective-C runtime
+and would frequently cause Acorn to crash.  But, we're going to leave this hear
+for historical purposes, and maybe someday someone will redo it with a better
+bridge.
 
 typical script example...
 
