@@ -120,7 +120,13 @@ enum {
 - (NSRect)opaqueBounds;
 
 // set a layer's mask with the given CIImage.  If a layer mask doesn't already exist, one will be created.
+// Added in 3.5
 - (void)setLayerMaskImage:(CIImage*)ciimage;
+
+// similar to setLayerMaskImage, the following two methods will set the mask of a layer with a URL or a path to an image.
+// Added in 3.5
+- (TSPLUGIN_API void)setLayerMaskWithImageAtURL:(NSURL*)url;
+- (TSPLUGIN_API void)setLayerMaskWithImageAtPath:(NSString*)path;
 
 // Get the layer mask (if it exists already).  Note that this returns an ACMaskLayer, not a CIImage
 // Added in 3.5
