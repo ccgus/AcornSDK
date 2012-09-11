@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AMApplicationBuild</key>
+	<string>346</string>
+	<key>AMApplicationVersion</key>
+	<string>2.3</string>
+	<key>AMDocumentVersion</key>
+	<string>2</string>
+	<key>actions</key>
+	<array>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.path</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>1.1.2</string>
+				<key>AMApplication</key>
+				<array>
+					<string>Finder</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>fileNames</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.path</string>
+					</array>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Get Specified Finder Items.action</string>
+				<key>ActionName</key>
+				<string>Get Specified Finder Items</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>fileNames</key>
+					<array/>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.SpecifiedFiles</string>
+				<key>CFBundleVersion</key>
+				<string>1.1.2</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryFilesAndFolders</string>
+				</array>
+				<key>Class Name</key>
+				<string>SpecifiedFilesAction</string>
+				<key>InputUUID</key>
+				<string>B4E0D078-2EA0-47D3-8614-C6063FE4727A</string>
+				<key>Keywords</key>
+				<array>
+					<string>File</string>
+					<string>Choose</string>
+					<string>Find</string>
+					<string>Get</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>AC869169-7170-4AB4-96FF-97085AAA9DF1</string>
+				<key>UUID</key>
+				<string>A405EBEF-A3D5-482D-92E7-A838189EE9DE</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Finder</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<array/>
+						<key>name</key>
+						<string>fileNames</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+				</dict>
+				<key>isViewVisible</key>
+				<true/>
+				<key>location</key>
+				<string>567.500000:1119.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Get Specified Finder Items.action/Contents/Resources/English.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array>
+						<string>public.image</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>1.0</string>
+				<key>AMApplication</key>
+				<array>
+					<string>Acorn</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>source</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.path</string>
+					</array>
+				</dict>
+				<key>AMRequiredResources</key>
+				<array/>
+				<key>ActionBundlePath</key>
+				<string>/Users/gus/Library/Automator/Do JavaScript.action</string>
+				<key>ActionName</key>
+				<string>Do JavaScript</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>source</key>
+					<string>// This script requires Acorn 3.5 or later.
+function main(input) {
+    
+    var pathToMask = "/Users/gus/Desktop/fmlogomask.png";
+    
+    var idx = 0;
+
+    while (idx &lt; input.length()) {
+        var filePath = input[idx];
+        
+        var doc = Acorn.open(filePath);
+        
+        [[doc currentLayer] setLayerMaskWithImageAtPath:pathToMask];
+        // Then you can save it if you'd like,
+        // [doc saveDocument:null];
+        
+        // or write it out somewhere else:
+        // [[doc dataRepresentationOfType:"public.png"] writeToFile: filePath + ".png"];
+        
+        // and finally close it.
+        [doc close];
+        idx++;
+    }
+}</string>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.flyingmeat.Automator.DoJavaScript</string>
+				<key>CFBundleVersion</key>
+				<string>1.0</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<false/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryPhotos</string>
+				</array>
+				<key>Class Name</key>
+				<string>PXADoJavaScript</string>
+				<key>InputUUID</key>
+				<string>FC51092A-E238-4EAA-B73E-9D5517D592BB</string>
+				<key>Keywords</key>
+				<array>
+					<string>JSTalk</string>
+					<string>JavaScript</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>EBC7205F-5066-4CA7-997E-24A7A728B697</string>
+				<key>UUID</key>
+				<string>353D4397-7EE7-46C7-8880-3CA3B69635C2</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Acorn</string>
+				</array>
+				<key>arguments</key>
+				<dict/>
+				<key>isViewVisible</key>
+				<true/>
+				<key>location</key>
+				<string>567.500000:881.000000</string>
+				<key>nibPath</key>
+				<string>/Users/gus/Library/Automator/Do JavaScript.action/Contents/Resources/English.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<true/>
+		</dict>
+	</array>
+	<key>connectors</key>
+	<dict>
+		<key>9DBD10A0-E036-43B5-8B2D-598A8B5075B4</key>
+		<dict>
+			<key>from</key>
+			<string>A405EBEF-A3D5-482D-92E7-A838189EE9DE - A405EBEF-A3D5-482D-92E7-A838189EE9DE</string>
+			<key>to</key>
+			<string>353D4397-7EE7-46C7-8880-3CA3B69635C2 - 353D4397-7EE7-46C7-8880-3CA3B69635C2</string>
+		</dict>
+	</dict>
+	<key>workflowMetaData</key>
+	<dict>
+		<key>workflowTypeIdentifier</key>
+		<string>com.apple.Automator.workflow</string>
+	</dict>
+</dict>
+</plist>
