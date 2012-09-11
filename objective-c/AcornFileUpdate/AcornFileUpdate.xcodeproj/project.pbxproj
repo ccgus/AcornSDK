@@ -1,0 +1,298 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CC363F4E1512606800B4F8A2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC363F4D1512606800B4F8A2 /* Cocoa.framework */; };
+		CC363F581512606800B4F8A2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CC363F561512606800B4F8A2 /* InfoPlist.strings */; };
+		CC363F5A1512606800B4F8A2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CC363F591512606800B4F8A2 /* main.m */; };
+		CC363F5E1512606800B4F8A2 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CC363F5C1512606800B4F8A2 /* Credits.rtf */; };
+		CC363F611512606800B4F8A2 /* AFUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CC363F601512606800B4F8A2 /* AFUAppDelegate.m */; };
+		CC363F641512606800B4F8A2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC363F621512606800B4F8A2 /* MainMenu.xib */; };
+		CC363F6B1512637900B4F8A2 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CC363F6A1512637900B4F8A2 /* libsqlite3.0.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CC363F491512606800B4F8A2 /* AcornFileUpdate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcornFileUpdate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC363F4D1512606800B4F8A2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		CC363F501512606800B4F8A2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		CC363F511512606800B4F8A2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		CC363F521512606800B4F8A2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CC363F551512606800B4F8A2 /* AcornFileUpdate-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AcornFileUpdate-Info.plist"; sourceTree = "<group>"; };
+		CC363F571512606800B4F8A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CC363F591512606800B4F8A2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CC363F5B1512606800B4F8A2 /* AcornFileUpdate-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AcornFileUpdate-Prefix.pch"; sourceTree = "<group>"; };
+		CC363F5D1512606800B4F8A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		CC363F5F1512606800B4F8A2 /* AFUAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFUAppDelegate.h; sourceTree = "<group>"; };
+		CC363F601512606800B4F8A2 /* AFUAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFUAppDelegate.m; sourceTree = "<group>"; };
+		CC363F631512606800B4F8A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		CC363F6A1512637900B4F8A2 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CC363F461512606700B4F8A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC363F4E1512606800B4F8A2 /* Cocoa.framework in Frameworks */,
+				CC363F6B1512637900B4F8A2 /* libsqlite3.0.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CC363F3E1512606700B4F8A2 = {
+			isa = PBXGroup;
+			children = (
+				CC363F531512606800B4F8A2 /* AcornFileUpdate */,
+				CC363F4C1512606800B4F8A2 /* Frameworks */,
+				CC363F4A1512606800B4F8A2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CC363F4A1512606800B4F8A2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CC363F491512606800B4F8A2 /* AcornFileUpdate.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CC363F4C1512606800B4F8A2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CC363F6A1512637900B4F8A2 /* libsqlite3.0.dylib */,
+				CC363F4D1512606800B4F8A2 /* Cocoa.framework */,
+				CC363F4F1512606800B4F8A2 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CC363F4F1512606800B4F8A2 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CC363F501512606800B4F8A2 /* AppKit.framework */,
+				CC363F511512606800B4F8A2 /* CoreData.framework */,
+				CC363F521512606800B4F8A2 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		CC363F531512606800B4F8A2 /* AcornFileUpdate */ = {
+			isa = PBXGroup;
+			children = (
+				CC363F5F1512606800B4F8A2 /* AFUAppDelegate.h */,
+				CC363F601512606800B4F8A2 /* AFUAppDelegate.m */,
+				CC363F621512606800B4F8A2 /* MainMenu.xib */,
+				CC363F541512606800B4F8A2 /* Supporting Files */,
+			);
+			path = AcornFileUpdate;
+			sourceTree = "<group>";
+		};
+		CC363F541512606800B4F8A2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CC363F551512606800B4F8A2 /* AcornFileUpdate-Info.plist */,
+				CC363F561512606800B4F8A2 /* InfoPlist.strings */,
+				CC363F591512606800B4F8A2 /* main.m */,
+				CC363F5B1512606800B4F8A2 /* AcornFileUpdate-Prefix.pch */,
+				CC363F5C1512606800B4F8A2 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CC363F481512606700B4F8A2 /* AcornFileUpdate */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC363F671512606800B4F8A2 /* Build configuration list for PBXNativeTarget "AcornFileUpdate" */;
+			buildPhases = (
+				CC363F451512606700B4F8A2 /* Sources */,
+				CC363F461512606700B4F8A2 /* Frameworks */,
+				CC363F471512606700B4F8A2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AcornFileUpdate;
+			productName = AcornFileUpdate;
+			productReference = CC363F491512606800B4F8A2 /* AcornFileUpdate.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CC363F401512606700B4F8A2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = AFU;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = CC363F431512606700B4F8A2 /* Build configuration list for PBXProject "AcornFileUpdate" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CC363F3E1512606700B4F8A2;
+			productRefGroup = CC363F4A1512606800B4F8A2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CC363F481512606700B4F8A2 /* AcornFileUpdate */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CC363F471512606700B4F8A2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC363F581512606800B4F8A2 /* InfoPlist.strings in Resources */,
+				CC363F5E1512606800B4F8A2 /* Credits.rtf in Resources */,
+				CC363F641512606800B4F8A2 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CC363F451512606700B4F8A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC363F5A1512606800B4F8A2 /* main.m in Sources */,
+				CC363F611512606800B4F8A2 /* AFUAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CC363F561512606800B4F8A2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CC363F571512606800B4F8A2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CC363F5C1512606800B4F8A2 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CC363F5D1512606800B4F8A2 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		CC363F621512606800B4F8A2 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CC363F631512606800B4F8A2 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CC363F651512606800B4F8A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		CC363F661512606800B4F8A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		CC363F681512606800B4F8A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AcornFileUpdate/AcornFileUpdate-Prefix.pch";
+				INFOPLIST_FILE = "AcornFileUpdate/AcornFileUpdate-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CC363F691512606800B4F8A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AcornFileUpdate/AcornFileUpdate-Prefix.pch";
+				INFOPLIST_FILE = "AcornFileUpdate/AcornFileUpdate-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CC363F431512606700B4F8A2 /* Build configuration list for PBXProject "AcornFileUpdate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC363F651512606800B4F8A2 /* Debug */,
+				CC363F661512606800B4F8A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC363F671512606800B4F8A2 /* Build configuration list for PBXNativeTarget "AcornFileUpdate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC363F681512606800B4F8A2 /* Debug */,
+				CC363F691512606800B4F8A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CC363F401512606700B4F8A2 /* Project object */;
+}
