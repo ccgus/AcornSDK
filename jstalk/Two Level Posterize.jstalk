@@ -1,0 +1,14 @@
+/*
+This filter shows how to call CIColorPosterize with a setting of 2 for inputLevels
+
+To install, put this file in your ~/Library/Application Support/Acorn/Plug-Ins/. folder, and restart Acorn.
+*/
+
+function main(image, doc, layer) {
+    var filter = [CIFilter filterWithName:"CIColorPosterize"];
+    [filter setDefaults];
+    [filter setValue:[NSNumber numberWithInt:2] forKey:"inputLevels"];
+    [filter setValue:image forKey:"inputImage"];
+    [layer applyCIImageFromFilter:[filter valueForKey:"outputImage"]];
+}
+

@@ -1,0 +1,27 @@
+/*
+This filter will add a single pixel black border to the current image
+
+To install, put this file in your ~/Library/Application Support/Acorn/Plug-Ins/. folder, and restart Acorn.
+*/
+
+function main(image, doc, layer) {
+        
+    var bitmap = [[[NSBitmapImageRep alloc] initWithCIImage:image] autorelease];
+    
+    var extent = NSMakeRect(0, 0, [bitmap pixelsWide], [bitmap pixelsHigh]);
+    
+	 var bitmapGraphicsContext = [NSGraphicsContext graphicsContextWithBitmapImageRep:bitmap];
+    
+    [NSGraphicsContext saveGraphicsState];
+    [NSGraphicsContext setCurrentContext:bitmapGraphicsContext];
+    
+    [[NSColor blackColor] set];
+    
+    NSFrameRect(extent);
+    
+    [NSGraphicsContext restoreGraphicsState];	
+    var ciImage = [CIImage imageWithCGImage:[bitmap CGImage]];
+    
+    return ciImage;
+    
+}

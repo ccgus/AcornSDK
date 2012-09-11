@@ -1,0 +1,30 @@
+/*
+This filter will save all the layers in your image to the /tmp directory, with an optional scaling parameter.
+
+To install, put this file in your ~/Library/Application Support/Acorn/Plug-Ins/. folder, and restart Acorn.
+*/
+
+var outputDirectory = "/tmp/"
+
+function saveLayer(layer, scaleFactor) {
+    var opaqueBounds = layer.opaqueBounds();
+
+    var newWidth = Math.floor(opaqueBounds.size.width * scaleFactor);
+    var newHeight = Math.floor(opaqueBounds.size.height * scaleFactor);
+
+    var scaleX = newWidth / opaqueBounds.size.width;
+    var scaleY = newHeight / opaqueBounds.size.height;
+
+    var ciimage = layer.CIImageForScreenByBlendingOntoImage(CIImage.emptyImage()).imageByCroppingToRect(opaqueBounds).imageByApplyingTransform(CGAffineTransformMakeScale(scaleX, scaleY));
+    
+    [ciimage writeToURL:NSURL.fileURLWithPath(outputDirectory + layer.layerName() + ".png") withUTI:"public.png"];
+    
+}
+
+function main(image,doc,layer) {
+    var baseLayerGroup = doc.baseGroup();
+    for (var i=0; i<baseLayerGroup.layers().count(); i++) {
+        saveLayer(baseLayerGroup.layers()[i], 1);
+        //saveLayer(baseLayerGroup.layers()[i], .5);
+    }
+}

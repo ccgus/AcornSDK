@@ -1,7 +1,7 @@
 /*
 This is a plugin that will take the current layer, and remove it's transparency by drawing it over whatever the current front color is.
 
-To install, put this file in you ~/Library/Application Support/Acorn/Plug-Ins/. folder, and restart Acorn.
+To install, put this file in your ~/Library/Application Support/Acorn/Plug-Ins/. folder, and restart Acorn.
 */
 
 function main(image, document, layer) {

@@ -1,0 +1,25 @@
+/*
+This sample plugin wil convert the current layer to grayscale using a Core Image filter.
+
+To install, put this file in your ~/Library/Application Support/Acorn/Plug-Ins/. folder, and restart Acorn.
+
+ACScriptMenuTitle=Convert to Grayscale (JSTalk)
+ACScriptSuperMenuTitle=Color Effect
+ACShortcutKey=g
+ACShortcutMaskKey=command option control
+ACIsActionKey=false
+*/
+
+function main(image, doc, layer) {
+    
+    var color   = [CIColor colorWithRed:0.5 green:0.5 blue:0.5]
+    var filter  = [CIFilter filterWithName:"CIColorMonochrome"]
+    
+    [filter setDefaults]
+    [filter setValue:image forKey:'inputImage']
+    [filter setValue:color forKey:'inputColor']
+    [filter setValue:1 forKey:'inputIntensity']
+    
+    return [filter valueForKey:'outputImage']
+}
+
