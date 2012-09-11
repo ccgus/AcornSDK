@@ -1,0 +1,29 @@
+kernel vec4 spherize(sampler image, vec2 center)
+{
+	float refractionIndex = 1.0 / 1.8;
+	vec2 coord = samplerCoord(image);
+	vec2 ocoord = samplerCoord(image);
+	vec2 dist = coord - center;
+	float radius = 200.0;
+	float radius2 = radius * radius;
+	float r2 = dist.x * dist.x + dist.y * dist.y;
+	
+	float z2 = radius2 - r2;
+	float z = sqrt(z2);
+	
+	float xa = asin( dist.x / sqrt( dist.x * dist.x + z2 ) );
+	float xb = xa - xa * refractionIndex;
+	float ya = asin( dist.y / sqrt( dist.y * dist.y + z2 ) );
+	float yb = ya - ya * refractionIndex;
+	
+	coord.x -= z * tan( xb );
+	coord.y -= z * tan( yb );
+	
+	coord.x = r2 > 0.0 ? coord.x : ocoord.x;
+	coord.y = r2 > 0.0 ? coord.y : ocoord.y;
+	
+	coord.x = r2 < radius2 ? coord.x : ocoord.x;
+	coord.y = r2 < radius2 ? coord.y : ocoord.y;
+	
+	return sample(image, coord);
+}
