@@ -1,18 +1,11 @@
 #import <Cocoa/Cocoa.h>
 
-// pass in -DDEBUG to gcc in development builds to see some output when you 
-// don't feel like using a debugger.
-
-#ifdef DEBUG
-//#define debug(...) NSLog(__VA_ARGS__)
-#else
-#define debug(...)
-#endif
-
 enum {
     ACBitmapLayer = 1,
-    ACShapeLayer = 2,
-    ACGroupLayer = 3,
+    ACShapeLayer  = 2,
+    ACGroupLayer  = 3,
+    // …
+    ACMaskLayer   = 5,
 };
 
 enum {
@@ -31,24 +24,25 @@ enum {
 @protocol ACImageIOProvider;
 @protocol ACImageFilter;
 @protocol ACLayer;
+@protocol ACMaskLayer;
 
 @protocol ACPluginManager
 
 - (BOOL)addFilterMenuTitle:(NSString*)menuTitle
-         withSuperMenuTitle:(NSString*)superMenuTitle
-                     target:(id)target
-                     action:(SEL)selector
-              keyEquivalent:(NSString*)keyEquivalent
-  keyEquivalentModifierMask:(NSUInteger)mask
-                 userObject:(id)userObject;
+        withSuperMenuTitle:(NSString*)superMenuTitle
+                    target:(id)target
+                    action:(SEL)selector
+             keyEquivalent:(NSString*)keyEquivalent
+ keyEquivalentModifierMask:(NSUInteger)mask
+                userObject:(id)userObject;
 
 - (BOOL)addActionMenuTitle:(NSString*)menuTitle
-         withSuperMenuTitle:(NSString*)superMenuTitle
-                     target:(id)target
-                     action:(SEL)selector
-              keyEquivalent:(NSString*)keyEquivalent
-  keyEquivalentModifierMask:(NSUInteger)mask
-                 userObject:(id)userObject;
+        withSuperMenuTitle:(NSString*)superMenuTitle
+                    target:(id)target
+                    action:(SEL)selector
+             keyEquivalent:(NSString*)keyEquivalent
+ keyEquivalentModifierMask:(NSUInteger)mask
+                userObject:(id)userObject;
 
 
 - (void)registerIOProviderForReading:(id<ACImageIOProvider>)provider forUTI:(NSString*)uti;
@@ -62,7 +56,7 @@ enum {
 - (id<ACPluginManager>)sharedPluginManager;
 @end
 
-@protocol ACPlugin 
+@protocol ACPlugin
 
 /*
  This will create an instance of our plugin.  You really shouldn't need to
@@ -85,7 +79,7 @@ enum {
 /*
  Can we handle shape layers?  If yes, then our action is handed the layer instead of a CIImage
  
- return [NSNumber numberWithBool:YES]; 
+ return [NSNumber numberWithBool:YES];
  
  NSNumber is used to be friendly with scripting languages.
  */
@@ -125,6 +119,17 @@ enum {
 // Added in 3.5
 - (NSRect)opaqueBounds;
 
+// Get the layer mask (if it exists already).
+// Added in 3.5
+- (id <ACMaskLayer>)mask;
+
+// Added in 3.5
+- (BOOL)maskIsLinked;
+
+// Added in 3.5
+- (void)setMaskIsLinked:(BOOL)value;
+
+
 @property (assign) BOOL visible;
 @property (assign) float opacity;
 @property (assign) CGBlendMode compositingMode; // aka, also the blend mode.
@@ -157,19 +162,15 @@ enum {
 // apply a ciimage to the layer.
 - (void)applyCIImageFromFilter:(CIImage*)img;
 
-// EXPERIMENTAL new in 1.1 
 // get a CGBitmapContext that we can draw on.
 - (CGContextRef)drawableContext;
 
-// EXPERIMENTAL new in 1.1 
 // commit the changes we made to the context, for undo support
 - (void)commitFrameOfDrawableContext:(NSRect)r;
 
-// EXPERIMENTAL new in 1.1 
 // find out where on our layer the current mouse event is pointing to
 - (NSPoint)layerPointFromEvent:(NSEvent*)theEvent;
 
-// EXPERIMENTAL new in 1.1 
 // tell the layer it needs to be updated
 - (void)setNeedsDisplayInRect:(NSRect)invalidRect;
 
@@ -197,8 +198,13 @@ enum {
 + (id<ACBitmapLayer>)addBitmapLayer;
 + (id<ACGroupLayer>)addGroupLayer;
 
+@end
+
+
+@protocol ACMaskLayer <ACBitmapLayer>
 
 @end
+
 
 @protocol ACGraphic <NSObject>
 
@@ -297,7 +303,7 @@ enum {
 
 @end
 
-@protocol ACToolPalette <NSObject> 
+@protocol ACToolPalette <NSObject>
 
 - (NSColor *)frontColor;
 - (void)setFrontColor:(NSColor *)newFrontColor;
@@ -308,19 +314,7 @@ enum {
 @end
 
 
-
-
-// EXPERIMENTAL new in 1.1
-// UI taken out in 2.0 - do you want this?  Write to support@flyingmeat.com if so.
-@protocol ACBitmapTool  <NSObject> 
-- (void)mouseDown:(NSEvent*)theEvent onCanvas:(NSView*)canvas toLayer:(id<ACBitmapLayer>)layer;
-- (NSCursor*)toolCursorAtScale:(CGFloat)scale;
-- (NSString *)toolName;
-- (NSView*)toolPaletteView;
-@end
-
-
-@protocol ACImageIOProvider  <NSObject> 
+@protocol ACImageIOProvider  <NSObject>
 
 - (BOOL)writeDocument:(id<ACDocument>)document toURL:(NSURL *)absoluteURL ofType:(NSString *)type forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError **)outError;
 
@@ -329,10 +323,8 @@ enum {
 @end
 
 
-@protocol ACUtilities <NSObject> 
-
+@protocol ACUtilities <NSObject>
 - (BOOL)crushPNGData:(NSData*)pngData toPath:(NSString*)path;
-
 @end
 
 @interface NSApplication (AcornAdditions)
