@@ -1,0 +1,166 @@
+// !$*UTF8*$!
+{
+	089C1669FE841209C02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Release;
+		activeExecutable = CC802A750C164C5F00A8FACD /* Acorn */;
+		activeTarget = 8D5B49AC048680CD000E48DA /* Grayscale */;
+		addToTargets = (
+			8D5B49AC048680CD000E48DA /* Grayscale */,
+		);
+		breakpoints = (
+		);
+		breakpointsGroup = CC762DDE0C442CD200F2C856 /* XCBreakpointsBucket */;
+		codeSenseManager = CC07351C0B0AD3A3002E7E05 /* Code sense */;
+		executables = (
+			CC802A750C164C5F00A8FACD /* Acorn */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXExecutablesDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXExecutablesDataSource_NameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					22,
+					300,
+					57.5835,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXExecutablesDataSource_ActiveFlagID,
+					PBXExecutablesDataSource_NameID,
+					PBXExecutablesDataSource_CommentsID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					148,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					311,
+					10,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 213734370;
+			PBXWorkspaceStateSaveDate = 213734370;
+		};
+		sourceControlManager = CC07351B0B0AD3A3002E7E05 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	8D5B49AC048680CD000E48DA /* Grayscale */ = {
+		activeExec = 0;
+	};
+	CC07351B0B0AD3A3002E7E05 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+		scmType = "";
+	};
+	CC07351C0B0AD3A3002E7E05 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	CC762DDE0C442CD200F2C856 /* XCBreakpointsBucket */ = {
+		isa = XCBreakpointsBucket;
+		name = SimplePlugin;
+		objects = (
+		);
+	};
+	CC802A750C164C5F00A8FACD /* Acorn */ = {
+		isa = PBXExecutable;
+		activeArgIndex = 2147483647;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		launchableReference = CC802A760C164C5F00A8FACD /* Acorn.app */;
+		libgmallocEnabled = 0;
+		name = Acorn;
+		savedGlobals = {
+		};
+		sourceDirectories = (
+		);
+	};
+	CC802A760C164C5F00A8FACD /* Acorn.app */ = {
+		isa = PBXFileReference;
+		explicitFileType = wrapper.application;
+		name = Acorn.app;
+		path = /Volumes/srv/Users/gus/builds/Debug/Acorn.app;
+		sourceTree = "<absolute>";
+	};
+	CCF900720C29E19900BA85E7 /* Grayscale-Info.plist */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {833, 785}}";
+			sepNavSelRange = "{836, 0}";
+			sepNavVisRect = "{{0, 0}, {833, 785}}";
+		};
+	};
+	CCF900800C29E1CB00BA85E7 /* SPGrayscalePlugin.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1209, 922}}";
+			sepNavSelRange = "{241, 17}";
+			sepNavVisRect = "{{0, 0}, {1209, 922}}";
+		};
+	};
+	CCF900810C29E1CB00BA85E7 /* SPGrayscalePlugin.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1017, 819}}";
+			sepNavSelRange = "{1225, 0}";
+			sepNavVisRect = "{{0, 0}, {1017, 819}}";
+		};
+	};
+	CCF900860C29E1D800BA85E7 /* ACPlugin.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {755, 781}}";
+			sepNavSelRange = "{258, 0}";
+			sepNavVisRect = "{{0, 0}, {755, 781}}";
+		};
+	};
+}
