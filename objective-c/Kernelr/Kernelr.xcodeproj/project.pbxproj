@@ -19,6 +19,7 @@
 		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		8D5B49B6048680CD000E48DA /* Kernelr.acplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Kernelr.acplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC28896315FEDE1C00A6BCF7 /* ACPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACPlugin.h; path = ../../headers/ACPlugin.h; sourceTree = "<group>"; };
 		CC5BE6A20CC035F500BF77C8 /* KView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KView.h; sourceTree = "<group>"; };
 		CC5BE6A30CC035F500BF77C8 /* KView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KView.m; sourceTree = "<group>"; };
 		CC7F33C811F3C4FE00E18F71 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Kernelr.xib; sourceTree = "<group>"; };
@@ -27,7 +28,6 @@
 		CCF900720C29E19900BA85E7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCF900800C29E1CB00BA85E7 /* Kernelr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kernelr.h; sourceTree = "<group>"; };
 		CCF900810C29E1CB00BA85E7 /* Kernelr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kernelr.m; sourceTree = "<group>"; };
-		CCF900860C29E1D800BA85E7 /* ACPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPlugin.h; sourceTree = "<group>"; };
 		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
@@ -75,7 +75,7 @@
 		08FB77AFFE84173DC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				CCF900860C29E1D800BA85E7 /* ACPlugin.h */,
+				CC28896315FEDE1C00A6BCF7 /* ACPlugin.h */,
 				CCF900800C29E1CB00BA85E7 /* Kernelr.h */,
 				CCF900810C29E1CB00BA85E7 /* Kernelr.m */,
 				CC5BE6A20CC035F500BF77C8 /* KView.h */,
