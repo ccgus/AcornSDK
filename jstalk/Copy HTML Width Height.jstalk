@@ -4,7 +4,7 @@ This is a plugin that will take the current dimensions of the selected layer, an
 To install, put this file in you ~/Library/Application Support/Acorn/Plug-Ins/. folder, and restart Acorn.
 */
 
-function main(image) {
+function main(image, doc, layer)  {
 	var extent = [image extent];
 	
 	var pb = NSPasteboard.generalPasteboard();

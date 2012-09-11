@@ -4,7 +4,7 @@ This is a plugin that will take the current layer, and remove it's transparency 
 To install, put this file in you ~/Library/Application Support/Acorn/Plug-Ins/. folder, and restart Acorn.
 */
 
-function main(image) {
+function main(image, document, layer) {
     var toolPalette = [[NSApplication sharedApplication] toolPalette];
     var back = [CIFilter filterWithName:"CIConstantColorGenerator"];
     [back setValue:[[[CIColor alloc] initWithColor:[toolPalette frontColor]] autorelease] forKey:"inputColor"];
