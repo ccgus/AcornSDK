@@ -119,7 +119,10 @@ enum {
 // Added in 3.5
 - (NSRect)opaqueBounds;
 
-// Get the layer mask (if it exists already).
+// set a layer's mask with the given CIImage.  If a layer mask doesn't already exist, one will be created.
+- (void)setLayerMaskImage:(CIImage*)ciimage;
+
+// Get the layer mask (if it exists already).  Note that this returns an ACMaskLayer, not a CIImage
 // Added in 3.5
 - (id <ACMaskLayer>)mask;
 
