@@ -1,0 +1,19 @@
+/*
+This filter will copy the current selection bounds (using the canvas coordinates) to the clipboard as a CGRect.
+
+This script uses a private API in Acorn, so it might break in a version that isn't 3.5.
+*/
+
+function main(image, doc, layer) {
+    var canvas = [doc canvas];
+    
+    var selectionBounds = [canvas selectionBounds];
+    
+    var pb = [NSPasteboard generalPasteboard];
+    [pb declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:null];
+    
+    var s = "CGRectMake(" + selectionBounds.origin.x + ", " + selectionBounds.origin.y + "," + selectionBounds.size.width + "," + selectionBounds.size.height + ")"
+    
+    [pb setString:s forType:NSStringPboardType];
+}
+
