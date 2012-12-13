@@ -1,0 +1,187 @@
+/*
+To install, put this file in your ~/Library/Application Support/Acorn/Plug-Ins/. folder, and restart Acorn.
+
+ACScriptMenuTitle=Insert Drafting Paper Layer
+
+A quick note on FMDrawContext, which this plugin uses - it was added in Acorn 3.5 to help out with HiDPI issues, and its interface is stable for Acorn 3.x.  
+
++ (id)drawContextWithSize:(NSSize)s;
++ (id)drawContextWithSize:(NSSize)s scale:(CGFloat)scale;
+- (CIImage*)CIImage;
+- (CGImageRef)CGImage __attribute__((cf_returns_retained));
+- (NSImage*)NSImage;
+- (NSBitmapImageRep*)bitmapImageRep;
+- (NSData*)dataOfType:(NSString*)uti;
+- (void)drawInContextWithBlock:(void (^)())r;
+- (CGContextRef)context;
+- (void)lockFocus;
+- (void)unlockFocus;
+
+*/
+
+function addNewDraftLayerWithABitmap(doc) {
+    
+    var newLayer = [[doc baseGroup] addBitmapLayer];
+    
+    [newLayer setLayerName:"Drafting Paper"];
+    
+    
+    var canvasSize = [doc canvasSize];
+    var draftBitmap = [FMDrawContext drawContextWithSize:canvasSize];
+    [draftBitmap lockFocus];
+    
+    [[NSColor colorWithCalibratedRed:0.095 green:0.374 blue:0.767 alpha:1.000] set];
+    
+    [NSBezierPath fillRect:NSMakeRect(0, 0, canvasSize.width, canvasSize.height)];
+    
+    var inset = 10;
+    
+    var r = NSMakeRect(inset + .5, inset + .5, canvasSize.width - inset * 2, canvasSize.height - inset * 2);
+    
+    [[NSColor colorWithCalibratedWhite:1 alpha:.5] set];
+    
+    [NSBezierPath strokeRect:r];
+    
+    var spacing = 10;
+    var y = inset + spacing;
+    var x = inset + spacing;
+    var w = canvasSize.width - inset * 2;
+    var h = canvasSize.height - inset * 2;
+    
+    var idx = 0;
+    
+    while (y < (canvasSize.height - inset)) {
+        
+        r = NSMakeRect(inset, y, w, 1)];
+        
+        var alpha = .3;
+        
+        if (idx % 10 == 0) {
+            alpha = .5;
+        }
+        
+        [[NSColor colorWithCalibratedWhite:1 alpha:alpha] set];
+        [NSBezierPath fillRect:r];
+        
+        y += spacing;
+        idx++;
+    }
+    
+    idx = 0;
+    while (x < (canvasSize.width - inset)) {
+        
+        r = NSMakeRect(x, inset, 1, h);
+        
+        
+        var alpha = .3;
+        
+        if (idx % 10 == 0) {
+            alpha = .5;
+        }
+        
+        [[NSColor colorWithCalibratedWhite:1 alpha:alpha] set];
+        [NSBezierPath fillRect:r];
+        
+        x += spacing;
+        idx++;
+    }
+    
+    
+    [draftBitmap unlockFocus];
+    
+    print(draftBitmap);
+    
+    [newLayer applyCIImageFromFilter:[draftBitmap CIImage]];
+}
+
+
+
+function main(image, doc, layer) {
+    addNewDraftLayerWithABitmap(doc);
+}
+
+
+
+
+
+/* this method will do the same as the bitmap one, but it's slower.  It's here for educational purposes */
+function addNewDraftLayerWithShapes(doc) {
+    
+    var newShapeLayer = [[doc baseGroup] addShapeLayer];
+    
+    [newShapeLayer setLayerName:"Drafting Paper"];
+    
+    
+    var canvasSize = [doc canvasSize];
+    
+    var r = [newShapeLayer addRectangleWithBounds:NSMakeRect(0, 0, canvasSize.width, canvasSize.height)];
+    
+    [r setDrawsFill:true];
+    [r setStrokeLineWidth:0];
+    [r setCornerRadius:0];
+    
+    [r setFillColor:[NSColor colorWithCalibratedRed:0.095 green:0.374 blue:0.767 alpha:1.000]];
+    
+    var inset = 10;
+    
+    r = [newShapeLayer addRectangleWithBounds:NSMakeRect(inset, inset, canvasSize.width - inset * 2, canvasSize.height - inset * 2)];
+    
+    [r setDrawsFill:false];
+    [r setStrokeLineWidth:1];
+    [r setCornerRadius:0];
+    
+    [r setStrokeColor:[NSColor colorWithCalibratedWhite:1 alpha:.5]];
+    
+    var spacing = 10;
+    var y = inset + spacing;
+    var x = inset + spacing;
+    var w = canvasSize.width - inset * 2;
+    var h = canvasSize.height - inset * 2;
+    
+    var idx = 0;
+    
+    while (y < (canvasSize.height - inset)) {
+        
+        r = [newShapeLayer addRectangleWithBounds:NSMakeRect(inset, y, w, 1)];
+        [r setDrawsFill:true];
+        [r setStrokeLineWidth:0];
+        
+        var alpha = .3;
+        
+        if (idx % 10 == 0) {
+            alpha = .5;
+        }
+        
+        [r setFillColor:[NSColor colorWithCalibratedWhite:1 alpha:alpha]];
+        
+        y += spacing;
+        idx++;
+    }
+    
+    idx = 0;
+    while (x < (canvasSize.width - inset)) {
+        
+        r = [newShapeLayer addRectangleWithBounds:NSMakeRect(x, inset, 1, h)];
+        [r setDrawsFill:true];
+        [r setStrokeLineWidth:0];
+        
+        var alpha = .3;
+        
+        if (idx % 10 == 0) {
+            alpha = .5;
+        }
+        
+        [r setFillColor:[NSColor colorWithCalibratedWhite:1 alpha:alpha]];
+        
+        x += spacing;
+        idx++;
+    }
+    
+}
+
+
+
+
+
+
+
