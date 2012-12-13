@@ -38,7 +38,7 @@ function addNewDraftLayerWithABitmap(doc) {
     
     var r = NSMakeRect(inset + .5, inset + .5, canvasSize.width - inset * 2, canvasSize.height - inset * 2);
     
-    [[NSColor colorWithCalibratedWhite:1 alpha:.5] set];
+    [[NSColor colorWithCalibratedWhite:1 alpha:.4] set];
     
     [NSBezierPath strokeRect:r];
     
@@ -54,10 +54,10 @@ function addNewDraftLayerWithABitmap(doc) {
         
         r = NSMakeRect(inset, y, w, 1)];
         
-        var alpha = .3;
+        var alpha = .2;
         
         if (idx % 10 == 0) {
-            alpha = .5;
+            alpha = .3;
         }
         
         [[NSColor colorWithCalibratedWhite:1 alpha:alpha] set];
@@ -73,10 +73,10 @@ function addNewDraftLayerWithABitmap(doc) {
         r = NSMakeRect(x, inset, 1, h);
         
         
-        var alpha = .3;
+        var alpha = .2;
         
         if (idx % 10 == 0) {
-            alpha = .5;
+            alpha = .3;
         }
         
         [[NSColor colorWithCalibratedWhite:1 alpha:alpha] set];
