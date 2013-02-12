@@ -1,0 +1,73 @@
+/*
+To install, put this file in your ~/Library/Application Support/Acorn/Plug-Ins/. folder, and restart Acorn.
+*/
+
+function rv(s) {
+    return Math.floor(Math.random()*s);
+}
+
+function randomColor() {
+    return [NSColor colorWithCalibratedRed:Math.random() green:Math.random() blue:Math.random() alpha:Math.random()];
+}
+
+function main(image, doc, layer) {
+    if ([layer isShape]) {
+        
+        var size = [doc canvasSize];
+        print(size.width);
+        print(size.height);
+        
+        for (var i = 0; i < 20; i++) {
+            var numberOfSegments = rv(8);
+            
+            var p = [NSBezierPath bezierPath];
+            
+            var sx = rv(size.width);
+            var sy = rv(size.height);
+            
+            [p moveToPoint:NSMakePoint(rv(size.width), rv(size.height))];
+            
+            for (var j = 0; j < numberOfSegments; j++) {
+                if (j % 2) {
+                    [p lineToPoint:NSMakePoint(rv(size.width), rv(size.height))];
+                }
+                else {
+                    [p curveToPoint:NSMakePoint(rv(size.width), rv(size.height)) controlPoint1:NSMakePoint(rv(size.width), rv(size.height)) controlPoint2:NSMakePoint(rv(size.width), rv(size.height))];
+                }
+            }
+            
+            
+            if (i % 2) {
+                [p curveToPoint:NSMakePoint(rv(size.width), rv(size.height)) controlPoint1:NSMakePoint(rv(size.width), rv(size.height)) controlPoint2:NSMakePoint(sx, sy)];
+                
+                [p closePath];
+                
+                var graphic = [layer addBezierPath:p];
+                
+                [graphic setDrawsFill:true];
+                [graphic setFillColor:randomColor()];
+                
+            }
+            else {
+                
+                [p setLineWidth:rv(10)+2];
+                
+                var graphic = [layer addBezierPath:p];
+                
+                
+                [graphic setDrawsFill:false];
+                [graphic setStrokeColor:randomColor()];
+            
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+    }
+}
