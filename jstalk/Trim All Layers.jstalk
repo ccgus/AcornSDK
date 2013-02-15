@@ -1,0 +1,7 @@
+// this filter will trim each bitmap layer to it's smallest size possible.
+// Eventually, acorn will do this automatically- but it's nice to have around until then.
+
+function main(image, doc, layer) {
+    [[doc baseGroup] trim]
+}
+
