@@ -1,0 +1,57 @@
+/*
+
+To install, put this file in your Acorn Plug-Ins folder.  If you got Acorn direct from Flying Meat, that will be:
+ ~/Library/Application Support/Acorn/Plug-Ins/
+
+If you purchased Acorn from the App Store, it'll be:
+~/Library/Containers/com.flyingmeat.Acorn/Data/Library/Application Support/Acorn/Plug-Ins/ folder.
+
+Once the plugin is in place, restart Acorn and it'll show up under the Filters menu.
+
+Have fun!
+
+*/
+
+function rv(s) {
+    return Math.floor(Math.random()*s);
+}
+
+function randomColor() {
+    return [NSColor colorWithCalibratedRed:Math.random() green:Math.random() blue:Math.random() alpha:Math.random()];
+}
+
+function main(image, doc, layer) {
+    
+    if (![layer isShape]) {
+        layer = [[doc baseGroup] addShapeLayer];
+    }
+
+
+    var size = [doc canvasSize];
+    
+    var m = Math.max(size.width, size.height);
+    
+    var count = 100;
+    
+    for (var i = 0; i < count; i++) {
+        
+        var r = rv(m / 4);
+        var x = rv(size.width + r / 2) - r / 2;
+        var y = rv(size.height + r / 2) - r / 2;
+        
+        
+        var graphic = [layer addOvalWithBounds:NSMakeRect(x, y, r, r)];
+        
+        if (i % 2) {
+            [graphic setDrawsFill:true];
+            [graphic setFillColor:randomColor()];
+            [graphic setStrokeColor:randomColor()];
+        }
+        else {
+            [graphic setStrokeLineWidth:rv(10)+2];
+            [graphic setDrawsFill:false];
+            [graphic setStrokeColor:randomColor()];
+        }
+    }
+
+}
