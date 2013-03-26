@@ -1,0 +1,77 @@
+/*
+To install, put this file in your ~/Library/Application Support/Acorn/Plug-Ins/. folder, and restart Acorn.
+*/
+
+function rv(s) {
+    return Math.floor(Math.random()*s);
+}
+
+function randomColor() {
+    return [NSColor colorWithCalibratedRed:Math.random() green:Math.random() blue:Math.random() alpha:Math.random()];
+}
+
+function rad(angle) {
+    return (angle * (Math.PI / 180.0))
+}
+
+function makeHexInBounds(bounds) {
+    var p = [NSBezierPath bezierPath];
+    
+    var midPoint = NSMakePoint(rv(bounds.size.width), rv(bounds.size.height));
+    
+    var count = 6;
+    
+    var A = 20 + rv(80);
+    var spaceAngle = (360.0 / count);
+    var q = 0;
+    
+    
+    var idx = 0;
+    while (idx < count) {
+        
+        var len = A;
+        var radius = 180 + (q + 90);
+        var x1 = Math.sin(rad(q)) * len;
+        var y1 = Math.sin(rad(radius)) * len;
+        
+        var pLoc = NSMakePoint(x1 + midPoint.x, y1 + midPoint.y);
+        
+        if ([p elementCount] == 0) {
+            [p moveToPoint:pLoc];
+            startPoint = pLoc;
+        }
+        else {
+            [p lineToPoint:pLoc];
+        }
+        
+        q += spaceAngle;
+        
+        idx++;
+    }
+    
+    [p closePath];
+    
+    return p;
+}
+
+
+function main(image, doc, layer) {
+    if ([layer isShape]) {
+        
+        var size = [doc canvasSize];
+        
+        var bounds = NSMakeRect(0, 0, size.width, size.height);
+        
+        var count = rv(40, 100);
+        
+        for (var i = 0; i < count; i++) {
+            var hexPath = makeHexInBounds(bounds);
+            
+            var graphic = [layer addBezierPath:hexPath];
+            
+            [graphic setFillColor:[NSColor blackColor]];
+            [graphic setDrawsFill:true];
+            
+        }
+    }
+}
