@@ -1,0 +1,26 @@
+/*
+To install, put this file in your ~/Library/Application Support/Acorn/Plug-Ins/. folder, and restart Acorn.
+
+This script requires Acorn 4.
+
+*/
+
+function main(image, doc, layer) {
+    
+    NSApp.windows().forEach(function(window){
+    
+        if (window.windowController() && window.windowController().document() && window.windowController().document().respondsToSelector("cropToRect:")) {
+            print(window);
+            
+            // set the frame here.
+            
+            var screen = window.screen();
+            var screenFrame = screen.frame();
+            var windowFrame = window.frame();
+            
+            window.setFrameTopLeftPoint(NSMakePoint(windowFrame.origin.x, screenFrame.origin.y + screenFrame.size.height));
+        }
+    });
+
+    return nil;
+}
