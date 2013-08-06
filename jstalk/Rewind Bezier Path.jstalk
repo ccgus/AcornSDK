@@ -1,0 +1,25 @@
+/*
+To install, put this file in your ~/Library/Application Support/Acorn/Plug-Ins/. folder, and restart Acorn.
+*/
+
+function main(image, doc, layer) {
+    if ([layer isShape]) {
+        
+        var selectedShape = [layer selectedGraphic];
+        
+        if (!selectedShape) {
+            return;
+        }
+        
+        if ([selectedShape graphicType] != 6 /*TSBezierGraphic*/) {
+            print("This filter only works on TSBezierGraphics")
+            return;
+        }
+        
+        var path = [selectedShape bezierPath];
+        
+        path = [path bezierPathByReversingPath];
+        
+        [selectedShape setBezierPath:path];
+    }
+}
