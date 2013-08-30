@@ -1,14 +1,10 @@
 /*
 
-To install, put this file in your Acorn Plug-Ins folder.  If you got Acorn direct from Flying Meat, that will be:
- ~/Library/Application Support/Acorn/Plug-Ins/
+How to install this plugin:
+1) Choose Acorn's Help ▸ Open Acorn's App Support Folder menu item.
+2) Place this script in the Plug-Ins folder (and make sure it ends with .jstalk)
+3) Restart Acorn.  The plugin will now show up in the Filter menu.
 
-If you purchased Acorn from the App Store, it'll be:
-~/Library/Containers/com.flyingmeat.Acorn/Data/Library/Application Support/Acorn/Plug-Ins/ folder.
-
-Once the plugin is in place, restart Acorn and it'll show up under the Filters menu.
-
-Have fun!
 
 */
 

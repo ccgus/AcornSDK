@@ -1,5 +1,9 @@
 /*
-To install, put this file in your ~/Library/Application Support/Acorn/Plug-Ins/. folder, and restart Acorn.
+How to install this plugin:
+1) Choose Acorn's Help ▸ Open Acorn's App Support Folder menu item.
+2) Place this script in the Plug-Ins folder (and make sure it ends with .jstalk)
+3) Restart Acorn.  The plugin will now show up in the Filter menu.
+
 */
 
 function main(image, doc, layer) {

@@ -1,6 +1,14 @@
 // this filter will trim each bitmap layer to it's smallest size possible.
 // Eventually, acorn will do this automatically- but it's nice to have around until then.
 
+/*
+How to install this plugin:
+1) Choose Acorn's Help ▸ Open Acorn's App Support Folder menu item.
+2) Place this script in the Plug-Ins folder (and make sure it ends with .jstalk)
+3) Restart Acorn.  The plugin will now show up in the Filter menu.
+
+*/
+
 function main(image, doc, layer) {
     [[doc baseGroup] trim]
 }
