@@ -47,9 +47,6 @@ function dialog( msg, given, title )
         result = input.intValue();
     }
     
-    // release the input field, the alert is autoreleased
-    input.release();
-
     // and return the result
     return result;
 }
