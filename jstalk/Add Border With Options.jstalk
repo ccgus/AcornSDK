@@ -1,0 +1,74 @@
+/*
+How to install this plugin:
+1) Choose Acorn's Help ▸ Open Acorn's App Support Folder menu item.
+2) Place this script in the Plug-Ins folder (and make sure it ends with .jstalk)
+3) Restart Acorn.  The plugin will now show up in the Filter menu.
+*/
+
+/*
+Original input function by urs hunkler: http://forums.flyingmeat.com/viewtopic.php?p=8379#p8379
+*/
+
+
+/**
+ * Open a dialog for user input
+ * @param  {string} msg    The dialog message
+ * @param  {mixed}  given  String or number - the given input value
+ * @param  {string} title  The dialog title
+ * @return {string}        The value the user entered in the dialog
+ */
+function dialog( msg, given, title )
+{
+    var result = null;
+
+    if( typeof msg === 'undefined' ) return result;
+
+    // escape % to avoid string formatting
+    msg = msg.replace( /%/g, '%%' );
+    if( typeof given === 'undefined' ) given = '';
+    if( typeof title === 'undefined' ) title = 'Input dialog';
+
+    // Create the alert
+    var alert = NSAlert.alertWithMessageText_defaultButton_alternateButton_otherButton_informativeTextWithFormat( title, 'OK', 'Cancel', nil, msg );
+    
+    // extend the alert window with an input field
+    var input = NSTextField.alloc().initWithFrame( NSMakeRect( 0, 0, 300, 24 ) );
+    input.setStringValue( given );
+    alert.setAccessoryView( input );
+    
+    // show the alert 
+    var button = alert.runModal();
+
+    // if the user clicked "Ok"
+    // get the text from the input field
+    if( button === NSAlertDefaultReturn )
+    {
+        input.validateEditing();
+        result = input.intValue();
+    }
+    
+    // and return the result
+    return result;
+}
+
+
+function main(image, doc, layer) {
+    
+    var strokeSize = dialog("How wide of a border?", 2, "Border Width");
+    
+    strokeSize = strokeSize * 2;
+    
+    var shapeLayer = [[doc baseGroup] addShapeLayer];
+    
+    var bounds = NSMakeRect(0, 0, 0, 0);
+    bounds.size = [doc canvasSize];
+    
+    var rect = [shapeLayer addRectangleWithBounds:bounds];
+    
+    [rect setDrawsFill:false];
+    [rect setDrawsStroke:true];
+    [rect setStrokeWidth:strokeSize];
+    
+    [rect setStrokeColor:[NSColor blackColor]];
+    
+}
