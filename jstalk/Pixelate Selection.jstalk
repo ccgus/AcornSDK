@@ -1,0 +1,25 @@
+/*
+
+This filter requires Acorn 4.3 or later.
+
+ACShortcutKey=p
+ACShortcutMaskKey=command control option
+ACIsActionKey=false
+
+How to install this plugin:
+1) Choose Acorn's Help ▸ Open Acorn's App Support Folder menu item.
+2) Place this script in the Plug-Ins folder (and make sure it ends with .jstalk)
+3) Restart Acorn.  The plugin will now show up in the Filter menu.
+*/
+
+function main(image, doc, layer) {
+    var filter = [CIFilter filterWithName:"CIPixellate"];
+    [filter setDefaults];
+
+    [filter setValue:image forKey:"inputImage"];
+    [filter setValue:3 forKey:"inputScale"];
+    var filteredImage = [filter valueForKey:"outputImage"];
+    
+    [layer applyCIImageFromFilter:filteredImage shouldClipToSelection:true];
+}
+
