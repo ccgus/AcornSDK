@@ -1,0 +1,34 @@
+/*
+
+Note: This script requires Acorn 4.3 or later.
+
+How to install this plugin:
+1) Choose Acorn's Help ▸ Open Acorn's App Support Folder menu item.
+2) Place this script in the Plug-Ins folder (and make sure it ends with .jstalk)
+3) Restart Acorn.  The plugin will now show up in the Filter menu.
+
+*/
+
+function main(image, doc, layer) {
+    if ([layer isShape]) {
+        
+        var alert = [COSAlertWindow new]; 
+        
+        [alert setMessageText:"Scale Shapes"];
+        [alert setInformativeText:"Scale by what percentage?"];
+        [alert addTextFieldWithValue:"100"];
+        [alert runModal];
+
+        var scale = [[alert viewAtIndex:0] floatValue] / 100;
+
+        var selectedShapes = [layer selectedGraphics];
+        
+        var i = 0;
+        
+        while (i < [selectedShapes count]) {
+            var shape = [selectedShapes objectAtIndex:i];
+            [shape scaleXBy:scale yBy:scale];
+            i++;
+        }
+    }
+}
