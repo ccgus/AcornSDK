@@ -1,0 +1,22 @@
+/*
+How to install this plugin:
+1) Choose Acorn's Help ▸ Open Acorn's App Support Folder menu item.
+2) Place this script in the Plug-Ins folder (and make sure it ends with .jstalk)
+3) Restart Acorn.  The plugin will now show up in the Filter menu.
+*/
+
+/*
+    Important note:  This "feature" is here for fun.  It's unsuported, and buggy.
+*/
+
+function main(image, doc, shapeLayer) {
+    
+    if ([shapeLayer layerType] != 2) {
+        shapeLayer = [[doc baseGroup] addShapeLayer];
+    }
+    
+    var middleX = Math.floor([doc canvasSize].width / 2);
+    var middleY = Math.floor([doc canvasSize].height / 2);
+    
+    [shapeLayer makeNewImageFromPasteboard:[NSPasteboard generalPasteboard] atPoint:NSMakePoint(middleX, middleY)];
+}
