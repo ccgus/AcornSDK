@@ -45,7 +45,10 @@ function main(image, doc, layer) {
         var data = [NSMutableData data];
         var imageDestination = CGImageDestinationCreateWithData(data, "public.tiff", 1, nil);
         
-        CGImageDestinationAddImage(imageDestination, cgimg, nil);
+        
+        var imageProperties = [doc imageProperties]; // warning, private Acorn API
+        
+        CGImageDestinationAddImage(imageDestination, cgimg, imageProperties);
         CGImageDestinationFinalize(imageDestination);
         
         // We're leaking because we crash eventually otherwise.  Looks like a bug in coscript
