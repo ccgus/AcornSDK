@@ -1,0 +1,63 @@
+/*
+How to install this plugin:
+1) Choose Acorn's Help ▸ Open Acorn's App Support Folder menu item.
+2) Place this script in the Plug-Ins folder (and make sure it ends with .jstalk)
+3) Restart Acorn.  The plugin will now show up in the Filter menu.
+*/
+
+__mocha__.loadFrameworkWithName("ImageIO")
+__mocha__.loadFrameworkWithName("CoreFoundation")
+
+function main(image, doc, layer) {
+    
+    var savePanel = [NSSavePanel savePanel];
+    
+    [savePanel setExtensionHidden:false];
+    [savePanel setAllowedFileTypes:["png"]];
+    [savePanel setNameFieldStringValue:[[layer layerName] stringByAppendingPathExtension:"png"]];
+    
+    if ([savePanel runModal]) {
+            
+        var cgimg = CGBitmapContextCreateImage([layer drawableContext]);
+        
+        newContext = CGBitmapContextCreate( nil,
+                                            CGImageGetWidth(cgimg),
+                                            CGImageGetHeight(cgimg),
+                                            8,
+                                            0,
+                                            CGImageGetColorSpace(cgimg),
+                                            kCGImageAlphaNoneSkipLast);
+        
+        var r = NSMakeRect(0, 0, CGImageGetWidth(cgimg), CGImageGetHeight(cgimg));
+        
+        // fill background with white.
+        CGContextSetRGBFillColor(newContext, 1, 1, 1, 1);
+        CGContextFillRect(newContext, r);
+        
+        CGContextDrawImage(newContext, r, cgimg);
+        
+        // get rid of our old image.
+        CGImageRelease(cgimg);
+        
+        // make a new one to write out.
+        cgimg = CGBitmapContextCreateImage(newContext);
+        
+        var data = [NSMutableData data];
+        var imageDestination = CGImageDestinationCreateWithData(data, "public.png", 1, nil);
+        
+        
+        var imageProperties = [doc imageProperties]; // warning, private Acorn API
+        
+        CGImageDestinationAddImage(imageDestination, cgimg, imageProperties);
+        CGImageDestinationFinalize(imageDestination);
+        
+        // We're leaking because we crash eventually otherwise.  Looks like a bug in coscript
+        // CFRelease(imageDestination);
+        
+        [data writeToURL:[savePanel URL] atomically:true];
+        
+        // We're leaking because we crash eventually otherwise.  Looks like a bug in coscript
+        // CGContextRelease(newContext);
+    }
+}
+
