@@ -22,7 +22,6 @@ enum {
 // forward decl.
 @protocol ACBitmapTool;
 @protocol ACImageIOProvider;
-@protocol ACImageFilter;
 @protocol ACLayer;
 @protocol ACMaskLayer;
 
@@ -47,7 +46,7 @@ enum {
 
 - (void)registerIOProviderForReading:(id<ACImageIOProvider>)provider forUTI:(NSString*)uti;
 - (void)registerIOProviderForWriting:(id<ACImageIOProvider>)provider forUTI:(NSString*)uti;
-- (void)registerFilterName:(NSString*)filterName constructor:(Class<ACImageFilter>)filterClass;
+- (void)registerFilterName:(NSString*)filterName constructor:(Class)filterClass;
 @end
 
 
@@ -115,6 +114,11 @@ enum {
 // grab a CIImage representation of the layer.
 - (CIImage*)CIImage;
 
+
+// grab a CIImage representation of the layer, with opacity, layer styles, mask, and other such things applied to it.
+// Added in 4.0
+- (CIImage*)renderedCIImage;
+
 // opaqueBounds returns the bounds of the image, not counting any 100% transparent pixels along the edges.  If you have a layer style that expands the image size (such as a drop shadow) this is not included in this calculation.
 // Added in 3.5
 - (NSRect)opaqueBounds;
@@ -138,6 +142,8 @@ enum {
 // Added in 3.5
 - (void)setMaskIsLinked:(BOOL)value;
 
+// Added in 4.5 - just adds an empty mask, or one based on the current selection.
+- (void)addMask;
 
 @property (assign) BOOL visible;
 @property (assign) float opacity;
@@ -170,6 +176,7 @@ enum {
 
 // apply a ciimage to the layer.
 - (void)applyCIImageFromFilter:(CIImage*)img;
+- (void)applyCIImageFromFilter:(CIImage*)img shouldClipToSelection:(BOOL)clipToSelection;
 
 // get a CGBitmapContext that we can draw on.
 - (CGContextRef)drawableContext;
@@ -203,9 +210,9 @@ enum {
 
 - (id<ACBitmapLayer>)insertCGImage:(CGImageRef)img atIndex:(NSUInteger)idx withName:(NSString*)layerName;
 
-+ (id<ACShapeLayer>)addShapeLayer;
-+ (id<ACBitmapLayer>)addBitmapLayer;
-+ (id<ACGroupLayer>)addGroupLayer;
+- (id<ACShapeLayer>)addShapeLayer;
+- (id<ACBitmapLayer>)addBitmapLayer;
+- (id<ACGroupLayer>)addGroupLayer;
 
 @end
 
@@ -231,8 +238,8 @@ enum {
 - (void)setStrokeColor:(NSColor *)strokeColor;
 - (NSColor *)strokeColor;
 
-- (void)setStrokeLineWidth:(CGFloat)width;
-- (CGFloat)strokeLineWidth;
+- (void)setStrokeWidth:(CGFloat)width;
+- (CGFloat)strokeWidth;
 
 - (NSRect)bounds;
 
@@ -253,7 +260,7 @@ enum {
 
 - (NSBezierPath *)bezierPath;
 
-- (int)graphicType;
+- (void)scaleXBy:(CGFloat)xScale yBy:(CGFloat)yScale;
 
 @end
 
@@ -344,33 +351,25 @@ enum {
 @end
 
 
-@protocol ACFilterWindowController <NSObject>
-- (void)setNeedsToUpdateImageForFilterController:(id<ACImageFilter>)controller;
+// This guy is a nice little helper for drawing to a bitmap for use later on.
+
+#ifndef FMDrawContextAvailable
+
+@interface FMDrawContext : NSObject
++ (id)drawContextWithSize:(NSSize)s;
++ (id)drawContextWithSize:(NSSize)s scale:(CGFloat)scale;
+- (CIImage*)CIImage;
+- (CGImageRef)CGImage __attribute__((cf_returns_retained));
+- (NSImage*)NSImage;
+- (NSBitmapImageRep*)bitmapImageRep;
+- (NSData*)dataOfType:(NSString*)uti;
+- (void)drawInContextWithBlock:(void (^)())r;
+- (CGContextRef)context;
+- (void)lockFocus;
+- (void)unlockFocus;
 @end
 
-@protocol ACImageFilter <NSObject>
-+ (id<ACImageFilter>)imageFilterWithName:(NSString*)name;
-+ (id<ACImageFilter>)imageFilterWithName:(NSString*)name parameters:(NSDictionary*)params;
-+ (BOOL)isLayerStyle;
-+ (NSString*)localizedNameForFilterName:(NSString*)filterName;
-- (NSString*)localizedName;
-- (NSString*)name;
-- (id<ACImageFilter>)copy;
-- (NSDictionary*)parametersForSaving;
-- (BOOL)isEnabled;
-- (void)setIsEnabled:(BOOL)enabled;
-- (CIImage*)outputImage;
-- (void)setInputImage:(CIImage*)image;
-- (NSViewController*)viewController;
-- (void)unloadViewController;
-- (void)assignFilterWindowController:(id<ACFilterWindowController>)filterWindowController; // don't retain this guy!
-- (CGFloat)updateExpansion;
-- (id<ACImageFilter>)copyWithScale:(CGFloat)scale;
-@end
-
-
-
-
+#endif
 
 /*
  CTGradient is in Acorn, it's just got a different name- "TSGradient".
