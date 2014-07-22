@@ -1,0 +1,37 @@
+/*
+
+How to install this plugin:
+1) Choose Acorn's Help ▸ Open Acorn's App Support Folder menu item.
+2) Place this script in the Plug-Ins folder (and make sure it ends with .jstalk)
+3) Restart Acorn.  The plugin will now show up in the Filter menu.
+
+*/
+
+function main(image, doc, layer) {
+    
+    // Beware: this uses private APIs that might change in a future release.
+    
+    var canvas = [doc canvas];
+    var selectionMaskLayer = [canvas selectionMaskLayer];
+    
+    if (!selectionMaskLayer) {
+        return;
+    }
+    
+    var selectionImage = [selectionMaskLayer CIImage];
+    
+    var selectionsGroup = [doc firstLayerWithName:"Selections"];
+    if (!selectionsGroup) {
+        selectionsGroup = [[doc baseGroup] addGroupLayer];
+        [selectionsGroup setLayerName:"Selections"];
+    }
+    
+    var newLayer = [selectionsGroup addBitmapLayer];
+    
+    [newLayer setLayerName:"A Selection"];
+    
+    [newLayer applyCIImageFromFilter:selectionImage]
+    
+    // go ahead and hide it.
+    [newLayer setVisible:false];
+}
