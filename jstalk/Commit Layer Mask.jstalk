@@ -11,7 +11,14 @@ function main(image, doc, layer) {
     
     // Beware: this uses private APIs that might change in a future release.
     
+    if ([layer isMask]) {
+        layer = [layer hostLayer];
+        image = [layer CIImage];
+    }
+    
     var newImage = [layer maskImage:image atScale:1];
-    [layer setMask:nil]
-    return newImage;
+    
+    [layer setMask:nil];
+    
+    [layer applyCIImageFromFilter:newImage];
 }
