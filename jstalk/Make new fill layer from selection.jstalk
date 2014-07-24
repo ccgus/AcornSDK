@@ -24,14 +24,25 @@ function main(image, doc, layer) {
     if (!selectionsGroup) {
         selectionsGroup = [[doc baseGroup] addGroupLayer];
         [selectionsGroup setLayerName:"Selections"];
+        [selectionsGroup setVisible:false];
     }
     
     var newLayer = [selectionsGroup addBitmapLayer];
     
     [newLayer setLayerName:"A Selection"];
     
+    // change the color of the selection, which is originally white to something else.  In this case, gray.
+    // https://developer.apple.com/library/mac/documentation/GraphicsImaging/Reference/CoreImageFilterReference/Reference/reference.html#//apple_ref/doc/filter/ci/CIWhitePointAdjust
+    
+    var color = [CIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0];
+    
+    var filter = [CIFilter filterWithName:"CIWhitePointAdjust"];
+    [filter setValue:selectionImage forKey:"inputImage"];
+    [filter setValue:color          forKey:"inputColor"];
+    
+    selectionImage = [filter valueForKey:"outputImage"];
+    
+    
     [newLayer applyCIImageFromFilter:selectionImage]
     
-    // go ahead and hide it.
-    [newLayer setVisible:false];
 }
