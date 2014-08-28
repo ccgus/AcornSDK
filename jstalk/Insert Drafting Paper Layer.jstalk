@@ -31,19 +31,20 @@ function addNewDraftLayerWithABitmap(doc) {
     
     var canvasSize = [doc canvasSize];
     var draftBitmap = [FMDrawContext drawContextWithSize:canvasSize];
+    
     [draftBitmap lockFocus];
+    
     
     [[NSColor colorWithCalibratedRed:0.095 green:0.374 blue:0.767 alpha:1.000] set];
     
     [NSBezierPath fillRect:NSMakeRect(0, 0, canvasSize.width, canvasSize.height)];
     
+    CGContextSetBlendMode([draftBitmap context], kCGBlendModeLighten);
+    
+    
+    
     var inset = 10;
     
-    var r = NSMakeRect(inset + .5, inset + .5, canvasSize.width - inset * 2, canvasSize.height - inset * 2);
-    
-    [[NSColor colorWithCalibratedWhite:1 alpha:.4] set];
-    
-    [NSBezierPath strokeRect:r];
     
     var spacing = 10;
     var y = inset + spacing;
@@ -51,44 +52,51 @@ function addNewDraftLayerWithABitmap(doc) {
     var w = canvasSize.width - inset * 2;
     var h = canvasSize.height - inset * 2;
     
-    var idx = 0;
+    var colorA = [NSColor colorWithCalibratedRed:0.274 green:0.498 blue:0.811 alpha:1];
+    var colorB = [NSColor colorWithCalibratedRed:0.399 green:0.614 blue:0.914 alpha:1];
+    
+    var idx = 1;
     
     while (y < (canvasSize.height - inset)) {
         
         r = NSMakeRect(inset, y, w, 1)];
         
-        var alpha = .2;
+        var c = colorA;
         
         if (idx % 10 == 0) {
-            alpha = .3;
+            c = colorB;
         }
         
-        [[NSColor colorWithCalibratedWhite:1 alpha:alpha] set];
+        [c set];
         [NSBezierPath fillRect:r];
         
         y += spacing;
         idx++;
     }
     
-    idx = 0;
+    idx = 1;
     while (x < (canvasSize.width - inset)) {
         
         r = NSMakeRect(x, inset, 1, h);
-        
-        
-        var alpha = .2;
+
+        var c = colorA;
         
         if (idx % 10 == 0) {
-            alpha = .3;
+            c = colorB;
         }
         
-        [[NSColor colorWithCalibratedWhite:1 alpha:alpha] set];
-        [NSBezierPath fillRect:r];
+        [c set];        [NSBezierPath fillRect:r];
         
         x += spacing;
         idx++;
     }
     
+    
+    var outsideRect = NSMakeRect(inset + .5, inset + .5, canvasSize.width - inset * 2, canvasSize.height - inset * 2);
+    
+    [colorB set];
+    
+    [NSBezierPath strokeRect:outsideRect];
     
     [draftBitmap unlockFocus];
     
