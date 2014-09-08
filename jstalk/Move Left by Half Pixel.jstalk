@@ -1,0 +1,21 @@
+/*
+
+How to install this plugin:
+1) Choose Acorn's Help ▸ Open Acorn's App Support Folder menu item.
+2) Place this script in the Plug-Ins folder (and make sure it ends with .jstalk)
+3) Restart Acorn.  The plugin will now show up in the Filter menu.
+
+*/
+
+function main(image, doc, layer) {
+    
+    var extent = [image extent];
+    
+    image = [image imageByApplyingTransform:CGAffineTransformMakeTranslation(-.5, 0)];
+    
+    // make sure it has lands on good pixel boundries, so Acorn doesn't get angry and do it for you.
+    image = [image imageByCroppingToRect:extent];
+    
+    return image;
+}
+
