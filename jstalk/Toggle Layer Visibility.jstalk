@@ -1,0 +1,30 @@
+/*
+
+ACShortcutKey=r
+ACShortcutMaskKey=command control
+ACIsActionKey=false
+
+To install this, choose Acorn's Help ▸ Open App Support Folder menu item, place it in the Plug-Ins folder, and restart Acorn.
+
+*/
+
+
+function main(image, doc, layer) {
+    
+    // selectedLayers is a private api, and might change in a future release.
+    var layers = doc.selectedLayers();
+    
+    var idx = 0;
+    while (idx < layers.count()) {
+        var layer = layers[idx];
+        
+        layer.setVisible(!layer.visible());
+        
+        idx++;
+    }
+    
+    
+    
+    
+}
+
