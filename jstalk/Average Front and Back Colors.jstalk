@@ -1,0 +1,18 @@
+/*
+How to install this plugin:
+1) Choose Acorn's Help ▸ Open Acorn's App Support Folder menu item.
+2) Place this script in the Plug-Ins folder (and make sure it ends with .jstalk)
+3) Restart Acorn.  The plugin will now show up in the Filter menu.
+*/
+
+function main() {
+    
+    var tp = [NSApp toolPalette]
+    
+    var c = [[tp frontColor] blendedColorWithFraction:.5 ofColor:[tp backColor]];
+    
+    if (c) {
+        [tp setFrontColor:c];
+    }
+    
+}
