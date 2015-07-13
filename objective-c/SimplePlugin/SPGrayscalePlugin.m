@@ -46,7 +46,7 @@
 - (NSNumber*)validateForLayer:(id<ACLayer>)layer {
     
     if ([layer layerType] == ACBitmapLayer) {
-        [NSNumber numberWithBool:YES];
+        return [NSNumber numberWithBool:YES];
     }
     
     return [NSNumber numberWithBool:NO];
