@@ -1,0 +1,80 @@
+/*
+
+This script is a bit advanced as far as processes and such go- so here's a little explination as to
+what is happening.
+
+We can open and run this from Cocoa Script Editor, but the way it works is that when we run it, the 
+first part of this script checks and sees what the current running application is.  If it's not 
+Acorn 5, then it launches Acorn, and tells it to run this script (where it's currently saved.  So if
+you haven't saved it yet, you'll need to).
+
+Acorn then gets the command to look at the script and run it.  (The script is run twice- once from
+within Cocoa Script Editor, and once from within Acorn).
+
+So anyway, it then says, yes, I'm Acorn, I shall call the function runInAcorn().  Which does all the 
+fancy stuff where we open up a file, add an icon, then and then loop through some names, change some
+text boxes, and then save it out to a file.
+
+Pro Tip: If you want to see the output from Acorn, you can open up Console.app and see it in there.
+Or, you can run it from the command line while debugging things.
+
+*/
+
+if ("com.flyingmeat.Acorn5" == [[NSBundle mainBundle] bundleIdentifier]) {
+    
+    print("Running the script!");
+    runInAcorn()
+    
+}
+else {
+    print("Telling Acorn to run this script");
+    
+    var acorn = [JSTalk application:"Acorn"];
+    
+    [acorn doJavaScript:[jstalk env].scriptURL.path()];
+}
+
+
+function runInAcorn() {
+    
+    var list = """Louisa May Alcott
+Susan B. Anthony
+Clara Barton
+Elizabeth Blackwell
+Pearl S. Buck
+Marie Curie
+Amelia Earhart
+Kirstin Mueller
+Mary Baker Eddy""";
+
+    var acorn = [NSApplication sharedApplication];
+    var doc = acorn.open("/Users/gus/Projects/AcornSDK/jstalk/template/Template.acorn");
+    var iconPath = "/Users/gus/Projects/AcornSDK/jstalk/template/icon.png";
+    
+    // Let's show how to add a layer.  This requires Acorn 5.0.1
+    var iconLayer = doc.baseGroup().insertImageWithPath_atIndex_withName(iconPath, 2, "Our Icon");
+    
+    iconLayer.setFrameOrigin(NSMakePoint(100, 100));
+    
+    var lines = list.split(/\r?\n/);
+    
+    for (idx in lines) {
+        var name = lines[idx];
+        
+        // the second layer must be a shape layer for this to work.
+        var shapeLayer = doc.layers()[1]
+        
+        var titleTextBox = shapeLayer.graphics()[1]
+        
+        var descTextBox = shapeLayer.graphics()[0]
+        
+        titleTextBox.setContents(name);
+        
+        descTextBox.setContents(name + " " + name + " " + name + " " + name + "!");
+        
+        doc.writeToFile_withUTI("/tmp/template-" + name + ".png", "public.png")
+    }
+    
+    //doc.close();
+
+}
