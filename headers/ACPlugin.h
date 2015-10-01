@@ -210,6 +210,9 @@ enum {
 
 - (id<ACBitmapLayer>)insertCGImage:(CGImageRef)img atIndex:(NSUInteger)idx withName:(NSString*)layerName;
 
+// Added in Acorn 5.0.1
+- (id<ACBitmapLayer>)insertImageWithPath:(NSString*)path atIndex:(NSUInteger)idx withName:(NSString*)layerName;
+
 - (id<ACShapeLayer>)addShapeLayer;
 - (id<ACBitmapLayer>)addBitmapLayer;
 - (id<ACGroupLayer>)addGroupLayer;
@@ -269,6 +272,9 @@ enum {
 // added in 3.0.1
 - (void)setHTMLString:(NSString*)html;
 
+// added in 5.0.1
+- (void)setString:(NSString*)s;
+
 @end
 
 @protocol ACDocument <NSObject> // this inherits from NSDocument
@@ -316,6 +322,12 @@ enum {
 
 // new in 3.3:
 - (id<ACLayer>)firstLayerWithName:(NSString*)layerName;
+
+// new in 5.0: returns a composite of all the layers.
+- (CIImage *)CIImage;
+
+// new in 5.0: write to a file.
+- (BOOL)writeToFile:(NSString*)path withUTI:(NSString*)uti;
 
 @end
 
