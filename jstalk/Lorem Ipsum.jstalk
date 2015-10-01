@@ -1,0 +1,24 @@
+/*
+# How to use this plugin:
+Selecte a text box, and use the Filter ▸ Lorem Ipsum menu item to auto-fill it with some tasty text
+
+# How to install this plugin:
+1) Choose Acorn's Help ▸ Open Acorn's App Support Folder menu item.
+2) Place this script in the Plug-Ins folder (and make sure it ends with .jstalk)
+3) Restart Acorn.  The plugin will now show up in the Filter menu.
+*/
+
+ACTextGraphic = 4;
+
+function main(image,doc,layer) {
+    
+    var g = [layer selectedGraphic]
+    
+    if ([g graphicType] != ACTextGraphic) {
+        return;
+    }
+    
+    [g setString:"""Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.
+
+Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini."""];
+}.
