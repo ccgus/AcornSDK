@@ -1,0 +1,17 @@
+/*
+To install, put this file in your ~/Library/Application Support/Acorn/Plug-Ins/. folder, and restart Acorn.
+*/
+
+function main(image, doc, layer) {
+    if (layer.isBitmap()) {
+        
+        // Warning, private APIs in here, and might break in something other than Acorn 5.
+        
+        var img = layer.CIImageFromSelection();
+        
+        var doc = NSDocumentController.sharedDocumentController().newDocumentWithCIImage(img);
+        
+        doc.saveDocument(null);
+        
+    }
+}
