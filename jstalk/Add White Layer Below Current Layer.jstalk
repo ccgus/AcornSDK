@@ -8,10 +8,6 @@ How to install this plugin:
 3) Restart Acorn.  The plugin will now show up in the Filter menu.
 
 */
-var ACRectangleGraphic = 1;
-var ACOvalGraphic = 2;
-var ACLineGraphic = 3;
-var ACTextGraphic = 4;
 
 function main(image, doc, layer) {
     var newLayer = [[doc baseGroup] addBitmapLayer];
