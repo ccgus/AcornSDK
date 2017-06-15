@@ -335,18 +335,20 @@ enum {
 // new in 5.0: write to a file.
 - (BOOL)writeToFile:(NSString*)path withUTI:(NSString*)uti;
 
-// 6.0: A composite of all the layers
-- (CGImageRef)newCGImage;
-
-// 6.0:
+// new in 5.6.5
 // set the bits per _pixel_ for the document. The only correct values here are 32, 64, and 128.
 - (void)setBitsPerPixel:(size_t)bitsPerPixel;
 
-// Get the number of bits per pixel.  Since Acorn 6 only works 4 color components (rgba), you can divide this value by 4 to get the number of channels.
+// new in 5.6.5
+// Get the number of bits per pixel.  Since Acorn 5 only works 4 color components (rgba), you can divide this value by 4 to get the number of channels.
 - (size_t)bitsPerPixel;
 
-// Acorn 6 will always return 4 here. But why not have this here for future proofing?
+// new in 5.6.5
+// Acorn 5 will always return 4 here. But why not have this here for future proofing?
 - (size_t)numberOfComponents;
+
+// new in 5.6.5
+- (CGImageRef)newCGImage __attribute__((cf_returns_retained));
 
 @end
 
