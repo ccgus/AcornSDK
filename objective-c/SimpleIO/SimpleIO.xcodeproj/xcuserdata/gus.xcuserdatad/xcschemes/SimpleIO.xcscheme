@@ -44,7 +44,6 @@
       allowLocationSimulation = "YES">
       <PathRunnable
          runnableDebuggingMode = "0"
-         BundleIdentifier = "com.flyingmeat.Acorn6"
          FilePath = "/Users/gus/Library/Developer/Xcode/DerivedData/acorn-cduspeibhaptzecrrqdrotwjeezx/Build/Products/Debug/Acorn.app">
       </PathRunnable>
       <MacroExpansion>
