@@ -1,0 +1,57 @@
+/*
+How to install this plugin:
+1) Choose Acorn's Help ▸ Open Acorn's App Support Folder menu item.
+2) Place this script in the Plug-Ins folder (and make sure it ends with .jstalk)
+3) Restart Acorn.  The plugin will now show up in the Filter menu.
+*/
+
+function main(image, doc, layer) {
+    
+    var kCGImagePropertyExifDateTimeOriginal = 'DateTimeOriginal';
+    var kCGImagePropertyTIFFDateTime = 'DateTime';
+    var kCGImagePropertyTIFFDictionary = '{TIFF}';
+
+    var shapeLayer = [[doc baseGroup] addShapeLayer];
+    
+    var md = [doc exifDictionary];
+    print(md);
+
+    var dateTimeOriginal = [md objectForKey:kCGImagePropertyExifDateTimeOriginal];
+    if (!dateTimeOriginal) {
+        dateTimeOriginal = [md objectForKey:kCGImagePropertyTIFFDateTime];
+    }
+    
+    if (!dateTimeOriginal) {
+        dateTimeOriginal = [[md objectForKey:kCGImagePropertyTIFFDictionary] objectForKey:kCGImagePropertyTIFFDateTime];
+    }
+
+    if (!dateTimeOriginal) {
+        print("no dateTimeOriginal");
+        return nil;
+    }
+    
+    var fromExifFormatter = [[NSDateFormatter alloc] init];
+    [fromExifFormatter setDateFormat:@"yyyy:MM:dd HH:mm:ss"];
+    [fromExifFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    
+    var date = [fromExifFormatter dateFromString:dateTimeOriginal];
+    
+    if (!date) {
+        print("No date");
+        return nil;
+    }
+    var toUIFormatter = [[NSDateFormatter alloc] init];
+    [toUIFormatter setDateFormat:@"MMMM d, yyyy    h:mm a"];
+    [toUIFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    
+    var dateTimeSetting = [toUIFormatter stringFromDate:[NSDate date]];
+    
+    print(dateTimeSetting);
+
+    var textBox = [shapeLayer addTextWithBounds:NSMakeRect(0, 0, 500, 36)];
+    
+    textBox.setHTMLString_("<b style='font-size: 28px; color: #fff;'>" + dateTimeSetting + "</b>");
+    
+    return nil;
+        
+}
