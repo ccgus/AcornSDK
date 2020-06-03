@@ -1,0 +1,25 @@
+/*
+ACScriptMenuTitle = Copy Current Color as Hex
+ACShortcutKey = j
+ACShortcutMask = control command
+
+This plugin uses private APIs in Acorn 6, so it is possible to break in future major versions.
+*/
+
+function main(image, doc, layer) {
+    
+    var p = doc.canvas().currentMousePointInView();
+    
+    p = doc.canvas().translateViewPointToCanvas(p);
+    
+    var s = Math.floor(p.x) + "," + Math.floor(p.y);
+    
+    var color = layer.colorAtCanvasPoint(s);
+    
+    var pboard = NSPasteboard.generalPasteboard();
+    pboard.clearContents();
+    pboard.addTypes_owner(["public.utf8-plain-text"], null);
+    pboard.setString_forType("#" + color.hexValue(), "public.utf8-plain-text");
+    
+    return nil;
+}
