@@ -3,7 +3,15 @@ ACScriptMenuTitle = Copy Current Color as Hex
 ACShortcutKey = j
 ACShortcutMask = control command
 
+Note: This script requires Acorn 6.6 or later.
+
+How to install this plugin:
+1) Choose Acorn's Help ▸ Open Acorn's App Support Folder menu item.
+2) Place this script in the Plug-Ins folder (and make sure it ends with .jstalk)
+3) Restart Acorn.  The plugin will now show up in the Filter menu.
+
 This plugin uses private APIs in Acorn 6, so it is possible to break in future major versions.
+
 */
 
 function main(image, doc, layer) {
@@ -12,9 +20,7 @@ function main(image, doc, layer) {
     
     p = doc.canvas().translateViewPointToCanvas(p);
     
-    var s = Math.floor(p.x) + "," + Math.floor(p.y);
-    
-    var color = layer.colorAtCanvasPoint(s);
+    var color = layer.colorAtCanvasPoint(p);
     
     var pboard = NSPasteboard.generalPasteboard();
     pboard.clearContents();
