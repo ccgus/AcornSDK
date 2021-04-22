@@ -4,7 +4,7 @@ Note: This script requires Acorn 7 or later.
 
 How to install this plugin:
 1) Choose Acorn's Help ▸ Open Acorn's App Support Folder menu item.
-2) Place this script in the Plug-Ins folder (and make sure it ends with .jstalk)
+2) Place this script in the Plug-Ins folder (and make sure it ends with .js)
 3) Restart Acorn.  The plugin will now show up in the Filter menu.
 
 */
