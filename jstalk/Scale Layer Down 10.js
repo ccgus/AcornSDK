@@ -14,6 +14,8 @@ function main(image, doc, layer) {
         
         var img = layer.CIImage();
         
+        var extent = img.extent();
+        
         var f = CIFilter.filterWithName("CILanczosScaleTransform");
         f.setDefaults();
         f.setInputScale(.9);
@@ -21,6 +23,9 @@ function main(image, doc, layer) {
         
         var result = f.outputImage();
         
+        var offset = CGPointMake(extent.size.width * .05, extent.size.height * .05);
+        
+        result = result.imageByApplyingTransform(CGAffineTransformMakeTranslation(Math.floor(offset.x), Math.floor(offset.y)));
         
         layer.applyCIImageFromFilter(result);
         
