@@ -1,0 +1,36 @@
+var list = """George Washington
+John Adams
+Thomas Jefferson
+James Madison
+James Monroe
+John Quincy Adams
+Andrew Jackson
+Martin Van Buren
+William Henry Harrison
+John Tyler
+James Knox Polk
+Zachary Taylor
+Millard Fillmore
+Franklin Pierce""";
+
+var acorn = JSTalk.application("Acorn");
+var doc = acorn.open("/Path/To/Template.acorn");
+
+var lines = list.split(/\r?\n/);
+
+for (idx in lines) {
+    var name = lines[idx];
+    
+    // the second layer must be a shape layer for this to work.
+    var shapeLayer = doc.layers()[1]
+    
+    // and we have to already have a text box as the single element on the layer
+    var textShape = shapeLayer.graphics()[0]
+    
+    var html = "<span style='font-size: 25pt; color: white; font-weight: bold;'>" + name + "</span>"
+    
+    textShape.setHTMLString(html)
+    
+    // save it to where you want as a PNG
+    doc.dataOfType("public.png").writeToFile("/tmp/template-" + name + ".png");
+}

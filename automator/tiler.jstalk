@@ -1,0 +1,35 @@
+function main(input) {
+    
+    var doc = Acorn.open(input[0]);
+    
+    var layers = [doc layers]
+    
+    var curX = 0;
+    var curY = 0;
+    
+    for (i = 0; i < layers.count(); i++) {
+        var layer = layers[i];
+        print(layer.layerName());
+        
+        // this is a private api.  SHH.  File a feature request for this to be exposed.
+        [layer setDrawDelta:NSMakePoint(curX, curY)];
+        
+        curX += 32;
+        
+        if (curX > 900) {
+            curX = 0;
+            curY += 32;
+        }
+    }
+}
+
+if ("com.flyingmeat.Acorn" != [[NSBundle mainBundle] bundleIdentifier]) {
+    var s = [NSString stringWithContentsOfFile:[jstalk env].scriptURL.path() encoding:NSUTF8StringEncoding error:null];
+    
+    // this file should have all your layers aready added.  Just take an empty image, and drag and drop a bunch
+    // of them onto the canvas, and Acorn will make layers for them all.
+    
+    var args = [NSArray arrayWithObject:"/Volumes/srv/Users/gus/Desktop/spriter.acorn"];
+    [[JSTalk application:"Acorn"] doJavaScript:s withInput:args];
+}
+

@@ -1,0 +1,4 @@
+function main(image) {
+    var doc = [NSApp currentDocument];
+    [doc beginCroppingWithRect:NSMakeRect(0, 0, 240, 120)];
+}

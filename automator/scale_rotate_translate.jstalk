@@ -1,0 +1,44 @@
+var acorn   = NSApp;
+
+function degreesToRadian(degrees) {
+    return (degrees * (Math.PI / 180));
+}
+
+function main() {
+    
+    var doc = acorn.orderedDocuments()[0];
+    var layer = doc.layers()[0];
+    
+    var img = layer.CIImage();
+    
+    // scale!
+    img = img.imageByApplyingTransform( CGAffineTransformMakeScale(.5, .5));
+    
+    
+    // rotate!
+    var bounds = img.extent();
+    var translate = bounds.origin;
+    translate.x /= 2;
+    translate.y /= 2;
+    
+    var angle = 45;
+    img = img.imageByApplyingTransform( CGAffineTransformMakeTranslation(-translate.x, -translate.y));
+    img = img.imageByApplyingTransform( CGAffineTransformMakeRotation(degreesToRadian(angle)));
+    img = img.imageByApplyingTransform( CGAffineTransformMakeTranslation(translate.x, translate.y));
+    
+    // translate!
+    img = img.imageByApplyingTransform( CGAffineTransformMakeTranslation(10, 10));
+    layer.applyCIImageFromFilter( img);
+    
+}
+
+if ("com.flyingmeat.Acorn" == NSBundle. mainBundle(). bundleIdentifier()) {
+    main();
+}
+else { 
+    JSTalk.application_( "Acorn").doJavaScript_( jstalk. env().scriptURL.path());
+}
+
+
+
+
